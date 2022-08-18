@@ -41,11 +41,11 @@ const ContentContainer = ({ myName }) => {
                     </div>
                 </div>
             </div>
-            <div className='container-primary text-center'>
+            <div className='container-primary text-center' id="about_me">
                 <p className='text-left font-skills text-3xl '> A BIT ABOUT ME: </p><br />
                 <p className='font-about-me'> &nbsp;&nbsp;&nbsp;&nbsp; I am a graduate with a course of Bachelor of Science in Information Technology at Pamantasan ng Lungsod ng Pasig. While in college, I invested myself in learning and understanding all the fields that the university offered to teach. May it be software or hardware, everything about IT interests me and pursued learning it. But these days, I have been doing web development and troubleshooting computer problems. I prefer finding a good company where I can use most of my skills. Even if I might not be qualified enough, I am very willing to train or be trained. </p>
             </div>
-            <div className='container-secondary '>
+            <div className='container-secondary ' id="skills">
                 <p className='text-center font-skills text-3xl'> TECH SKILLS: </p>
 
                 <div className='flex flex-col items-center bg-gray-800 rounded-md p-2 max-w-3xl mx-auto'>
@@ -285,7 +285,7 @@ const ContentContainer = ({ myName }) => {
                         - Graduated as a salutatorian and best in programming in Senior High at a Computer College -
                     </p>
                     <p>
-                        - Earned 2nd place in programming contest in College -
+                        - Earned 3rd place in programming contest in College -
                     </p>
                     <p>
                         - Graduated as President’s Lister in College -
@@ -312,7 +312,7 @@ const ContentContainer = ({ myName }) => {
                 </div>
 
             </div>
-            <div className='container-secondary text-left'>
+            <div className='container-secondary text-left' id="preferred_jobs">
                 <p className=' font-skills text-3xl'> PREFERRED JOB: </p>
                 <div className=' pl-12 py-7 text-xl'>
                     <p>
@@ -348,7 +348,7 @@ const ContentContainer = ({ myName }) => {
                 </div>
 
             </div>
-            <div className='container-primary'>
+            <div className='container-primary'  id='contact'>
                 <p className='text-left font-skills text-3xl'> Wanna give me a try? You can contact me here: </p>
                 <p>
                     perez.johnmatthewleonard@gmail.com

@@ -9,11 +9,11 @@ const SideBar = () => {
     return (
         <div className='fixed top-0 left-0 h-screen w-16 m-0 flex flex-col bg-white dark:bg-gray-900 text-white shadow-lg'>
             <div className='mt-5'></div>
-            <SideBarIcon icon={<img src='https://cdn.discordapp.com/attachments/968930836583940157/968954569499475978/sample_ps.png' size="28" />} text="About me" />
+            <SideBarIcon icon={<img src='https://cdn.discordapp.com/attachments/968930836583940157/968954569499475978/sample_ps.png' size="28" />} href="#about_me" text="About me" />
             <Divider />
-            <SideBarIcon icon={<GiSkills size="32" />} text="Skills" />
-            <SideBarIcon icon={<MdWork size="32" />} text="Preferred jobs" />
-            <SideBarIcon icon={<TiContacts size="37" />} text="Contact" />
+            <SideBarIcon icon={<GiSkills size="32" />} href="#" text="Skills" />
+            <SideBarIcon icon={<MdWork size="32" />} href="#preferred_jobs" text="Preferred jobs" />
+            <SideBarIcon icon={<TiContacts size="37" />} href="#contact" text="Contact" />
             <Divider />
             <Theme icon={<ThemeIcon />} text="Theme" />
         </div>
@@ -21,14 +21,14 @@ const SideBar = () => {
     )
 }
 
-const SideBarIcon = ({ icon, text = 'tooltip 💡' }) => {
+const SideBarIcon = ({ icon, href, text = 'tooltip 💡' }) => {
     return (
-        <div className='sidebar-icon group'>
+        <a className='sidebar-icon group' href={href}>
             {icon}
             <span className='sidebar-tooltip group-hover:scale-100'>
                 {text}
             </span>
-        </div>
+        </a>
     )
 }
 
