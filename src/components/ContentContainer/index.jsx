@@ -299,6 +299,21 @@ const ContentContainer = ({ myName }) => {
                 <div className=' pl-12 py-7 text-xl'>
                     <div>
                         <p className=' font-semibold'>
+                            FUJITSU
+                        </p>
+                        <p>
+                            Assistant Application Developer
+                        </p>
+                        <p className=' text-sm'>
+                            September 2022 - Present
+                        </p>
+                    </div>
+                    
+                </div>
+
+                <div className=' pl-12 py-7 text-xl'>
+                    <div>
+                        <p className=' font-semibold'>
                             CYGNUS ONLINE SERVICES
                         </p>
                         <p>
@@ -310,6 +325,7 @@ const ContentContainer = ({ myName }) => {
                     </div>
                     
                 </div>
+                {/* To update deployment: npm run deploy */}
 
             </div>
             <div className='container-secondary text-left' id="preferred_jobs">

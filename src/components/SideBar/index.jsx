@@ -11,7 +11,7 @@ const SideBar = () => {
             <div className='mt-5'></div>
             <SideBarIcon icon={<img src='https://cdn.discordapp.com/attachments/968930836583940157/968954569499475978/sample_ps.png' size="28" />} href="#about_me" text="About me" />
             <Divider />
-            <SideBarIcon icon={<GiSkills size="32" />} href="#" text="Skills" />
+            <SideBarIcon icon={<GiSkills size="32" />} href="#skills" text="Skills" />
             <SideBarIcon icon={<MdWork size="32" />} href="#preferred_jobs" text="Preferred jobs" />
             <SideBarIcon icon={<TiContacts size="37" />} href="#contact" text="Contact" />
             <Divider />
