@@ -15,10 +15,10 @@ const ContentContainer = ({ myName }) => {
         <>
             
             <div className='ContentContainer items-center'>
-                <div className='flex-auto max-w-xs self-center m-8 md:ml-auto'>
+                {/* <div className='flex-auto max-w-xs self-center m-8 md:ml-auto'>
                     <img src="https://cdn.discordapp.com/attachments/968930836583940157/968954569499475978/sample_ps.png" alt="Image missing..." />
-                </div>
-                <div className="w-auto text-left md:mr-auto pb-6 md:pb-0">
+                </div> */}
+                <div className="md:ml-auto w-auto text-left md:mr-auto pb-6 md:pb-0">
                     <div className="pl-5 pr-20 pt-4 pb-6 shadow-lg text-gray-100 subpixel-antialiased bg-gray-800 rounded-lg leading-normal overflow-hidden w-auto text-lg">
                         <div className="mb-2 flex">
                             <div className="h-3 w-3 bg-red-500 rounded-full"></div>
@@ -27,14 +27,14 @@ const ContentContainer = ({ myName }) => {
                         </div>
                         <div className="mt-4 flex">
                             <div className="flex-1 items-center">
-                                <span className="text-green-400">warfreak:~$ </span>
+                                <span className="text-green-400">matt:~$ </span>
                                 sudo ./intro
                                 <br /><br />
                                 <p className=' text-red-600'>Hello!</p>
                                 <p>I am <font className=' text-blue-300'>Matthew Perez</font> </p>
                                 <p>a <font className=' text-orange-400'>Developer</font> </p>
                                 <br />
-                                <span className="text-green-400">warfreak:~$ </span> _
+                                <span className="text-green-400">matt:~$ </span> _
                                 <br /><br />
                             </div>
                         </div>
@@ -240,8 +240,8 @@ const ContentContainer = ({ myName }) => {
                 <div className='pt-10'></div>
 
                 <div className='relative items-center bg-secondary rounded-md p-1 max-w-3xl mx-auto group'>
-                    <div className=' relative overflow-hidden pb-4'>
-                        <img src="https://media.discordapp.net/attachments/968930836583940157/985029914422046790/unknown.png?width=810&height=443" />
+                    <div className=' relative overflow-hidden pb-4 h-8'>
+                        {/* <img src="https://media.discordapp.net/attachments/968930836583940157/985029914422046790/unknown.png?width=810&height=443" /> */}
                         <div className='absolute bottom-0 left-0'>
                             <p className='text-center text-white'>
                                 Hotel Reservation System
@@ -249,17 +249,17 @@ const ContentContainer = ({ myName }) => {
 
                         </div>
                     </div>
-                    <a href="https://github.com/magandangusername/Hotel" target="_blank" className=' scale-0 group-hover:scale-100 absolute top-0 w-full h-full bg-secondary opacity-70 rounded-md p-1 max-w-3xl m-auto items-center'>
+                    <a href="https://github.com/devsugoi/Hotel" target="_blank" className=' scale-0 group-hover:scale-100 absolute top-0 w-full h-full bg-secondary opacity-70 rounded-md p-1 max-w-3xl m-auto items-center'>
 
-                        <img src="github.svg" alt="Repository link" className=' absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' />
+                        {/* <img src="github.svg" alt="Repository link" className=' absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' /> */}
                     </a>
                 </div>
 
                 <div className='pt-10'></div>
 
                 <div className='relative items-center bg-secondary rounded-md p-1 max-w-3xl mx-auto group'>
-                    <div className='relative overflow-hidden pb-4'>
-                        <img src="https://cdn.discordapp.com/attachments/968930836583940157/978106522716471386/unknown.png" />
+                    <div className='relative overflow-hidden pb-4 h-8'>
+                        {/* <img src="https://cdn.discordapp.com/attachments/968930836583940157/978106522716471386/unknown.png" /> */}
                         <div className='absolute bottom-0 left-0'>
                             <p className='text-center text-white'>
                                 Ticket Selling and Booking System (Admin side)
@@ -267,15 +267,15 @@ const ContentContainer = ({ myName }) => {
 
                         </div>
                     </div>
-                    <a href="https://github.com/magandangusername/Ticket-Queen" target="_blank" className='scale-0 group-hover:scale-100 absolute top-0 w-full h-full bg-secondary opacity-70 rounded-md p-1 max-w-3xl mx-auto items-center'>
-                        <img src="github.svg" alt="Repository link" className=' absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' />
+                    <a href="https://github.com/devsugoi/Ticket-Queen" target="_blank" className='scale-0 group-hover:scale-100 absolute top-0 w-full h-full bg-secondary opacity-70 rounded-md p-1 max-w-3xl mx-auto items-center'>
+                        {/* <img src="github.svg" alt="Repository link" className=' absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' /> */}
                     </a>
                 </div>
 
                 <div className='pt-10'></div>
 
                 <p className=' text-2xl font-semibold'>You can check out my repositories here: </p>
-                <a href="https://github.com/magandangusername">https://github.com/magandangusername</a>
+                <a href="https://github.com/devsugoi">https://github.com/devsugoi</a>
             </div>
 
             <div className='container-secondary'>
@@ -302,7 +302,7 @@ const ContentContainer = ({ myName }) => {
                             FUJITSU
                         </p>
                         <p>
-                            Assistant Application Developer
+                            Application Systems Engineer
                         </p>
                         <p className=' text-sm'>
                             September 2022 - Present
@@ -378,16 +378,16 @@ const Rating = ({ rate }) => {
     return (
         <span className="absolute rating rating-sm w-auto rating-half my-3 scale-0 group-hover:scale-100 pt-28" title={"✭ " + rate}>
             <div className='float-left'>
-                <input type="radio" className="bg-yellow-500 mask mask-star-2 mask-half-1" disabled checked={rate == 0.5} />
-                <input type="radio" className="bg-yellow-500 mask mask-star-2 mask-half-2" disabled checked={rate == 1} />
-                <input type="radio" className="bg-yellow-500 mask mask-star-2 mask-half-1" disabled checked={rate == 1.5} />
-                <input type="radio" className="bg-yellow-500 mask mask-star-2 mask-half-2" disabled checked={rate == 2} />
-                <input type="radio" className="bg-yellow-500 mask mask-star-2 mask-half-1" disabled checked={rate == 2.5} />
-                <input type="radio" className="bg-yellow-500 mask mask-star-2 mask-half-2" disabled checked={rate == 3} />
-                <input type="radio" className="bg-yellow-500 mask mask-star-2 mask-half-1" disabled checked={rate == 3.5} />
-                <input type="radio" className="bg-yellow-500 mask mask-star-2 mask-half-2" disabled checked={rate == 4} />
-                <input type="radio" className="bg-yellow-500 mask mask-star-2 mask-half-1" disabled checked={rate == 4.5} />
-                <input type="radio" className="bg-yellow-500 mask mask-star-2 mask-half-2" disabled checked={rate == 5} />
+                <input type="radio" className="bg-yellow-500 mask mask-star-2 mask-half-1" disabled checked={rate === 0.5} />
+                <input type="radio" className="bg-yellow-500 mask mask-star-2 mask-half-2" disabled checked={rate === 1} />
+                <input type="radio" className="bg-yellow-500 mask mask-star-2 mask-half-1" disabled checked={rate === 1.5} />
+                <input type="radio" className="bg-yellow-500 mask mask-star-2 mask-half-2" disabled checked={rate === 2} />
+                <input type="radio" className="bg-yellow-500 mask mask-star-2 mask-half-1" disabled checked={rate === 2.5} />
+                <input type="radio" className="bg-yellow-500 mask mask-star-2 mask-half-2" disabled checked={rate === 3} />
+                <input type="radio" className="bg-yellow-500 mask mask-star-2 mask-half-1" disabled checked={rate === 3.5} />
+                <input type="radio" className="bg-yellow-500 mask mask-star-2 mask-half-2" disabled checked={rate === 4} />
+                <input type="radio" className="bg-yellow-500 mask mask-star-2 mask-half-1" disabled checked={rate === 4.5} />
+                <input type="radio" className="bg-yellow-500 mask mask-star-2 mask-half-2" disabled checked={rate === 5} />
             </div>
 
         </span>
