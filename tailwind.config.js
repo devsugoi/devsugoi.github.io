@@ -1,7 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: "class",
-  content: ["./index.html", "./src/**/*.{js,jsx}"],
+  // Tests are excluded on purpose: they assert on class names as plain strings,
+  // and without this Tailwind treats those assertions as usage and emits the
+  // utilities into the production stylesheet.
+  content: [
+    "./index.html",
+    "./src/**/*.{js,jsx}",
+    "!./src/**/*.test.{js,jsx}",
+    "!./src/setupTests.js",
+  ],
   theme: {
     extend: {
       colors: {
