@@ -2,6 +2,8 @@ import { describe, it, expect, beforeAll, afterEach, vi } from "vitest";
 import { render, screen, within, cleanup } from "@testing-library/react";
 import App from "./App";
 import experience from "./data/experience";
+import profile from "./data/profile";
+import education from "./data/education";
 
 beforeAll(() => {
   // jsdom implements neither of these, and the app reads both on mount.
@@ -63,6 +65,59 @@ describe("App", () => {
     ["about", "skills", "experience", "projects", "contact"].forEach((id) => {
       expect(document.getElementById(id)).toBeTruthy();
     });
+  });
+
+  /**
+   * The tests above only proved the <section> elements exist. That is exactly
+   * what a blank band looks like: heading in the sticky left column, nothing
+   * in the content column beside it.
+   *
+   * `textContent` alone is not enough — it counts text inside a hidden element
+   * too — so this also asserts the body is visible. jsdom applies no Tailwind,
+   * so `toBeVisible` catches `hidden`, inline `display:none` and `visibility`,
+   * but not a utility class. Reveal's opacity states are covered separately in
+   * Reveal.test.jsx.
+   */
+  it("gives every section a visible body beside its heading", () => {
+    render(<App />);
+    ["about", "skills", "experience", "projects", "contact"].forEach((id) => {
+      const section = document.getElementById(id);
+      // SectionShell renders a grid whose second child is the content column.
+      const body = section.querySelector("div").children[1];
+      expect(
+        body.textContent.trim().length,
+        `the "${id}" section rendered its heading but an empty body`,
+      ).toBeGreaterThan(100);
+      expect(body).toBeVisible();
+      // A body whose every child is hidden is a blank band with full height.
+      [...body.children].forEach((child) => expect(child).toBeVisible());
+    });
+  });
+
+  it("renders the About prose and education block", () => {
+    render(<App />);
+    const section = document.getElementById("about");
+    profile.about.forEach((paragraph) => {
+      expect(section.textContent).toContain(paragraph);
+    });
+    expect(section.textContent).toContain(education.degree);
+    expect(section.textContent).toContain(education.school);
+    education.achievements.forEach((achievement) => {
+      expect(section.textContent).toContain(achievement);
+    });
+  });
+
+  it("renders the Contact email and social links", () => {
+    render(<App />);
+    const section = document.getElementById("contact");
+    const mailto = within(section).getByRole("link", { name: profile.email });
+    expect(mailto.getAttribute("href")).toBe(`mailto:${profile.email}`);
+    expect(
+      within(section).getByRole("link", { name: /linkedin/i }).href,
+    ).toContain(profile.links.linkedin);
+    expect(
+      within(section).getByRole("link", { name: /github/i }).href,
+    ).toContain(profile.links.github);
   });
 
   it("shows the current role as present", () => {

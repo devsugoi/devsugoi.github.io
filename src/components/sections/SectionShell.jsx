@@ -1,11 +1,12 @@
 import Reveal from "../Reveal";
 
 /**
- * Modern section chrome: full-bleed alternating bands, with the heading in a
- * sticky left column beside the content rather than stacked above it.
+ * Section chrome: full-bleed alternating bands, with the heading in a sticky
+ * left column beside the content rather than stacked above it.
  *
- * Deliberately different structure from src/components/Section.jsx — that is
- * the point of having two designs.
+ * The grid's second child is the content column. App.test.jsx reaches for it by
+ * position to assert each section renders a body and not just a heading — a
+ * blank band is the failure this layout makes easy to ship unnoticed.
  */
 const SectionShell = ({ id, index, title, children }) => (
   <section

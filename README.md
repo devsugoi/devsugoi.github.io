@@ -39,7 +39,7 @@ Add an entry to the top of the array in `src/data/experience.js`. Set
 
 ## Layout
 
-One layout: `src/layouts/ModernLayout.jsx`. A terminal-window hero over an
+One layout: `src/layouts/SiteLayout.jsx`. A terminal-window hero over an
 animated starfield, then full-width alternating section bands with the heading
 pinned in a sticky left column.
 
@@ -69,22 +69,34 @@ against its light background.
 `src/theme.test.js` recomputes the WCAG contrast ratios from those variables, so
 editing them without rechecking the maths fails the build.
 
-## Contact form
+## Contact section
 
-The form is hidden unless `VITE_WEB3FORMS_KEY` is set. To enable it:
-
-1. Get a free access key at <https://web3forms.com>.
-2. Locally: put `VITE_WEB3FORMS_KEY=your-key` in a `.env` file.
-3. For deploys: add it as a repository secret of the same name.
-
-Without the key the section still shows the email address, copy button, and
-social links.
+Email address and social links, no form — there is no backend and no form
+service wired up. The workflow still passes a `VITE_WEB3FORMS_KEY` secret to the
+build; nothing reads it. Remove it from the workflow, or add a form that uses
+it, but do not assume one exists.
 
 ## Deploying
 
 Pushing to `main` runs `.github/workflows/deploy.yml`, which lints, tests,
-builds, and publishes to GitHub Pages.
+builds, and publishes to GitHub Pages. That workflow is the only deploy path —
+Pages is set to **GitHub Actions** as its source.
 
-> **One-time setup:** in Settings → Pages, set Source to **GitHub Actions**.
-> Until that is done the workflow will not publish, and `npm run deploy`
-> (which pushes `dist/` to the `gh-pages` branch) remains the working path.
+The `gh-pages` branch still holds the 2022 Create React App version of this
+site. Nothing serves it. Do not run `gh-pages -d dist` against it: if Pages is
+ever switched back to branch-based publishing it would put the old site live.
+
+### When a change does not appear
+
+`index.html` is served with `Cache-Control: max-age=600`, and old hashed assets
+stay on the server, so a browser holding the previous `index.html` renders the
+entire previous build for up to ten minutes. Confirm what is actually published
+before debugging the code:
+
+```bash
+curl -s https://devsugoi.github.io/ | grep assets/
+md5sum dist/assets/index-*.js       # compare against the deployed file
+```
+
+If the hashes match, the deploy is current and the difference is in the browser
+— check a private window with extensions disabled before changing anything.

@@ -16,8 +16,6 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write \"src/**/*.{js,jsx,css}\"",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
     "test": "vitest run"
   },
   "browserslist": [
@@ -35,7 +33,6 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.5.3",
-    "gh-pages": "^6.3.0",
     "globals": "^17.7.0",
     "jsdom": "^29.1.1",
     "postcss": "^8.4.49",
