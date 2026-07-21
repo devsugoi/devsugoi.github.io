@@ -2,141 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .sidebar-icon {
-    @apply relative flex items-center justify-center 
-    h-12 w-12 mt-2 mb-2 mx-auto  
-  bg-gray-400 hover:bg-blue-500 dark:bg-violet-600
-  text-gray-700 hover:text-white
-    hover:rounded-xl rounded-3xl
-    transition-all duration-150 ease-linear
-    cursor-pointer shadow-lg;
+@layer base {
+  :root {
+    /* sky-700 — 5.7:1 on the light page background, passes AA for body text.
+       sky-400 (the dark-mode value) manages only 1.6:1 here, which is why the
+       blue text was unreadable in light mode. */
+    --accent: 3 105 161;
+    --accent-contrast: 255 255 255;
+
+    /* Hairlines: rails, dividers, bullet dashes. Light mode needs these
+       several steps darker than dark mode — slate-200/300 vanish entirely. */
+    --rule: 148 163 184; /* slate-400 */
+    --rule-strong: 100 116 139; /* slate-500 */
   }
 
-  .sidebar-tooltip {
-    @apply absolute w-auto p-2 m-2 min-w-max left-14 rounded-md shadow-md
-    text-white bg-gray-900 
-    text-xs font-bold 
-    transition-all duration-100 scale-0 origin-left;
+  html.dark {
+    --accent: 56 189 248; /* sky-400 */
+    --accent-contrast: 11 17 32; /* ink-900 */
+    --rule: 255 255 255;
+    --rule-strong: 148 163 184; /* slate-400 */
   }
 
-  .sidebar-hr {
-    @apply bg-gray-200 dark:bg-gray-800 
-    border border-gray-200 dark:border-gray-800 rounded-full
-    mx-2;
+  html {
+    scroll-behavior: smooth;
   }
 
-  .ContentContainer {
-    @apply flex flex-col md:flex-row font-intro pl-16 text-center
-    m-0 text-white bg-secondary dark:bg-none dark:bg-transparent
-    h-full w-full 
-    overflow-hidden;
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
-  .container-primary {
-    @apply pl-24 pr-10 py-10 text-black dark:text-white text-xl bg-primary dark:bg-transparent w-full
-    overflow-hidden;
-  }
-  
-  .container-secondary {
-    /* @apply w-auto text-center ml-16 bg-secondary dark:bg-transparent text-white px-20 py-10; */
-    @apply pl-24 pr-10 py-10 text-center
-    m-0 text-white bg-secondary dark:bg-none dark:bg-transparent w-full
-    overflow-hidden;
+  body {
+    @apply overflow-x-hidden bg-primary text-slate-900 antialiased;
   }
 
-  .skills {
-    @apply p-4 py-8 flex justify-center items-center flex-wrap max-w-3xl text-white;
+  /* The starfield canvas paints the dark background itself; letting the body
+     stay transparent avoids a flash of solid colour over it. */
+  html.dark body {
+    @apply bg-ink-900 text-slate-100;
   }
 
-  .skill {
-    @apply flex flex-col justify-center items-center p-4 w-[120px];
-  }
-
-  .skill-icon {
-    @apply group-hover:scale-[1.3] transition-all duration-300;
-  }
-
-  .skill-title {
-    @apply p-2 text-base;
+  /* Only show focus rings for keyboard users, but never remove them. */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent;
   }
 }
-
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  /* @apply w-screen h-screen */
-}
-
-:root {
-  --dark-bg: rgba(15, 15, 15, 0.95);
-  --spacing: 350px;
-
-  font-family: brandon-grotesque, sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-#root {
-  z-index: 990;
-  position: absolute;
-  @apply h-screen w-screen fill-primary bg-primary dark:bg-transparent;
-}
-body {
-  @apply overflow-x-hidden;
-}
-/* 
-.repository-shadow {
-  text-shadow: 0px 0px white;
-} */
-
-/* .cloudy {
-  background-image: url('/public/clouds.png');
-  background-size: cover;
-} */
-
-/* h1,
-h2,
-h3,
-blockquote {
-  font-family: elevon, sans-serif;
-  font-weight: 700;
-  font-style: normal;
-} */
-
-/* header {
-  background: var(--dark-bg);
-  grid-column: 2 / span 5;
-  font-size: 2.5rem;
-  padding: 2rem;
-  margin-bottom: var(--spacing);
-} */
-/* 
-section {
-  grid-column: 2 / 8;
-  padding: 1rem;
-  background: var(--dark-bg);
-  font-size: 1.25rem;
-  line-height: 1.5;
-  margin-bottom: var(--spacing);
-}
-
-blockquote {
-  margin: 0;
-  padding: 0;
-  grid-column: 2 / span 9;
-  margin-bottom: var(--spacing);
-}
-
-blockquote p {
-  color: black;
-  background-color: white;
-  font-size: 4rem;
-  display: inline;
-  line-height: 1;
-}
-
-.left {
-  grid-column: 6 / 12;
-} */

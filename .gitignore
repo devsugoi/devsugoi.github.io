@@ -13,3 +13,10 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+# build output
+/dist
+/build
+
+# local env
+.env
+.env.local
