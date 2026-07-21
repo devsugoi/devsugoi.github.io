@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# devsugoi.github.io
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Personal portfolio — React + Vite + Tailwind, deployed to GitHub Pages.
 
-## Available Scripts
+## Running it
 
-In the project directory, you can run:
+```bash
+npm install
+npm run dev      # http://localhost:5173
+```
 
-### `npm start`
+| Script            | What it does                          |
+| ----------------- | ------------------------------------- |
+| `npm run dev`     | Dev server with hot reload            |
+| `npm run build`   | Production build into `dist/`         |
+| `npm run preview` | Serve the built `dist/` locally       |
+| `npm run test`    | Vitest suite                          |
+| `npm run lint`    | ESLint                                |
+| `npm run format`  | Prettier                              |
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Editing the content
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+All copy lives in `src/data/` — you should not need to touch a component to
+update the site.
 
-### `npm test`
+| File             | Holds                                          |
+| ---------------- | ---------------------------------------------- |
+| `profile.js`     | Name, tagline, about text, email, social links |
+| `experience.js`  | Jobs, dates, and the bullets under each        |
+| `skills.js`      | Skills, grouped by depth                       |
+| `projects.js`    | Featured projects and their descriptions       |
+| `education.js`   | Degree and academic achievements               |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Adding a job
 
-### `npm run build`
+Add an entry to the top of the array in `src/data/experience.js`. Set
+`current: true` and `end: null` for the role you are in now — that drives the
+"Present" badge. Set the previous role's `end` to the month you left.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Layout
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+One layout: `src/layouts/ModernLayout.jsx`. A terminal-window hero over an
+animated starfield, then full-width alternating section bands with the heading
+pinned in a sticky left column.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The starfield (`src/components/Starfield/index.jsx`) is fixed behind the whole
+page, but every section paints an opaque background, so it is only ever visible
+through the hero. If you add a section, give it an opaque background or the
+stars will show through it.
 
-### `npm run eject`
+It is lazy-loaded, skipped entirely when the visitor prefers reduced motion, and
+pauses when the tab is hidden.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Projects list
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+`src/hooks/useGithubRepos.js` pulls live repository data (stars, language) from
+the GitHub API and merges it over the curated descriptions in
+`src/data/projects.js`. The API call is unauthenticated, so responses are cached
+in `localStorage` for six hours; if GitHub is unreachable or the rate limit is
+hit, the static list renders instead.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Colours
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Accent and hairline colours are CSS variables in `src/index.css`, defined once
+for light mode and again under `html.dark`. A single fixed colour cannot serve
+both themes — the original site published sky-400 blue text that measured 1.6:1
+against its light background.
 
-## Learn More
+`src/theme.test.js` recomputes the WCAG contrast ratios from those variables, so
+editing them without rechecking the maths fails the build.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Contact form
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The form is hidden unless `VITE_WEB3FORMS_KEY` is set. To enable it:
 
-### Code Splitting
+1. Get a free access key at <https://web3forms.com>.
+2. Locally: put `VITE_WEB3FORMS_KEY=your-key` in a `.env` file.
+3. For deploys: add it as a repository secret of the same name.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Without the key the section still shows the email address, copy button, and
+social links.
 
-### Analyzing the Bundle Size
+## Deploying
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Pushing to `main` runs `.github/workflows/deploy.yml`, which lints, tests,
+builds, and publishes to GitHub Pages.
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+> **One-time setup:** in Settings → Pages, set Source to **GitHub Actions**.
+> Until that is done the workflow will not publish, and `npm run deploy`
+> (which pushes `dist/` to the `gh-pages` branch) remains the working path.

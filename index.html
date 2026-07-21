@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Matthew Perez — Software Engineer</title>
+    <meta
+      name="description"
+      content="Matthew Perez is a full-stack software engineer in the Philippines, building and testing web systems with Java, Spring Boot, Python and SQL."
+    />
+    <link rel="canonical" href="https://devsugoi.github.io/" />
+    <meta name="theme-color" content="#0f172a" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://devsugoi.github.io/" />
+    <meta property="og:title" content="Matthew Perez — Software Engineer" />
+    <meta
+      property="og:description"
+      content="Full-stack software engineer in the Philippines. Java, Spring Boot, Python, SQL."
+    />
+    <meta property="og:image" content="https://devsugoi.github.io/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Matthew Perez — Software Engineer" />
+    <meta
+      name="twitter:description"
+      content="Full-stack software engineer in the Philippines. Java, Spring Boot, Python, SQL."
+    />
+    <meta name="twitter:image" content="https://devsugoi.github.io/og.png" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <script>
+      // Resolve the theme before first paint so there is no flash of the
+      // wrong background. Mirrors the logic in src/hooks/useDarkMode.jsx.
+      (function () {
+        try {
+          var stored = localStorage.getItem("dark-theme");
+          var dark =
+            stored === null
+              ? window.matchMedia("(prefers-color-scheme: dark)").matches
+              : JSON.parse(stored);
+          document.documentElement.classList.toggle("dark", !!dark);
+        } catch (e) {
+          /* first visit in a locked-down browser: fall through to light */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
