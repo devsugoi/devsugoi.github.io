@@ -51,6 +51,30 @@ stars will show through it.
 It is lazy-loaded, skipped entirely when the visitor prefers reduced motion, and
 pauses when the tab is hidden.
 
+### Do not raise its z-index
+
+The canvas paints an **opaque** colour, so it must stay at `-z-10`. At `z-0` it
+sits in the z-index:0 layer, which CSS paints above the backgrounds and text of
+every non-positioned block — the section bands went transparent and their
+content vanished underneath it. Only positioned or transformed content survived
+(the sticky nav, the relative hero, anything inside `Reveal`, which sets a
+transform), so the sections whose bodies are not `Reveal`-wrapped were the ones
+that rendered as empty bands.
+
+`src/components/Starfield/index.test.jsx` pins the z-index, but jsdom does no
+compositing, so it cannot catch a regression in paint order. **This bug is
+invisible without WebGL** — headless browsers with no GPU fail to create the
+renderer, skip the starfield entirely, and render the page perfectly. To check
+it for real, open the site in a browser with hardware acceleration on and
+reduced motion off, and confirm the stars appear *only* in the hero. In
+DevTools:
+
+```js
+// Over an About paragraph — must report the paragraph, not the canvas.
+const b = document.querySelector("#about div").children[1].getBoundingClientRect();
+document.elementFromPoint(b.left + b.width / 2, b.top + b.height / 2);
+```
+
 ## Projects list
 
 `src/hooks/useGithubRepos.js` pulls live repository data (stars, language) from

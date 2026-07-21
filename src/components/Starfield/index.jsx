@@ -167,9 +167,21 @@ const Starfield = ({ dark = true }) => {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      // z-0, not a negative index: it must paint *above* the body background
-      // (which is the reduced-motion fallback) but below the content wrapper.
-      className="fixed inset-0 z-0 h-full w-full"
+      // Negative z-index, and it matters. This canvas is positioned and paints
+      // an *opaque* clear colour, so at z-0 it landed in the z-index:0 layer —
+      // above the backgrounds and text of every non-positioned block beside it.
+      // The sections are plain blocks, so the starfield painted over them: the
+      // bands went transparent (stars showing through what should be an opaque
+      // background) and any content not lifted into its own stacking context
+      // disappeared under it. Only positioned or transformed content survived —
+      // the sticky nav, the relative hero, and anything inside Reveal, which
+      // sets a transform. That is why About and Contact, the two sections whose
+      // bodies are not Reveal-wrapped, rendered as empty bands.
+      //
+      // -z-10 puts it below in-flow content. It cannot fall behind the body
+      // background: App.jsx's `relative z-10` wrapper is a stacking context, so
+      // the negative index is clamped inside it.
+      className="fixed inset-0 -z-10 h-full w-full"
     />
   );
 };
